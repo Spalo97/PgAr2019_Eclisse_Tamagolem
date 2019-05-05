@@ -20,8 +20,9 @@ public enum TipoElemento{
         return indice;
     }
 
-    public void setIndice(int indice) {
+  /*
+   *  public void setIndice(int indice) {
         this.indice = indice;
-    }
+    } inutile */
 
 }

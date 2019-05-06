@@ -65,4 +65,8 @@ public class Equilibrio {
 		}
 	}
 	
+	public int getDanno(int a1, int a2) {
+		int danno=equilibrio[a1][a2];
+		return danno;
+	}
 }

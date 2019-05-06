@@ -3,18 +3,23 @@ import java.util.Scanner;
 
 public class Tamagolem {
 
-	private final int MAX_PIETRE = 3;
+	public static final int TOT_PIETRE = 15;
+	public static final int MAX_PIETRE = 3;
 	private final int VITA_INIZIALE = 100;
-	private final int INDICE_INIZIALE = 0;
+	
 	private String nome;
 	private int vita;
-	private int indice;
-	//Il numero di pietre dipenderà dal numero di elementi
-	private ArrayList<TipoElemento> pietreIngerite = new ArrayList<>();
+	private ArrayList<Integer> pietreIngerite = new ArrayList<>();
+	private ArrayList <Integer> saccopietre = new ArrayList<>(5);
 
 	public Tamagolem() {
 		this.vita = VITA_INIZIALE;
-		this.indice = INDICE_INIZIALE;
+	}
+	
+	public void preparasacco() {
+		for(Integer pietra: saccopietre) {
+			pietra = 3;
+		}
 	}
 
 	public String getNome() {
@@ -25,7 +30,7 @@ public class Tamagolem {
 		return vita;
 	}
 
-	public TipoElemento getPietreIngerite(int i) {
+	public int getPietreIngerite(int i) {
 		return pietreIngerite.get(i);
 	}
 
@@ -38,24 +43,40 @@ public class Tamagolem {
 	}
 
 	public void setPietraIngerita() {
-		for (indice = 0; indice < MAX_PIETRE; indice++) {
+		for (int i = 0; i < MAX_PIETRE; i++) {
 			int scelta = inputElementi();
-			pietreIngerite.add(indice, TipoElemento.values()[scelta]);
+			pietreIngerite.add(scelta);
 		}
 	}
 
-	public static int inputElementi() {
+	public int inputElementi() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Inserisci il tipo di elemento:");
+		
+		//print degli elementi su console
 		for (int i = 0; i < TipoElemento.values().length; i++) {
 			System.out.printf("[%d] %s\t", i, TipoElemento.values()[i]);
 		}
 		System.out.println();
+		
 		int x = in.nextInt();
+		if(saccopietre.get(x)==0) {
+			do {
+				System.out.println("Non ci sono più pietre di questo tipo!");
+				System.out.println("Inserisci il tipo di elemento:");
+				for (int i = 0; i < TipoElemento.values().length; i++) {
+					System.out.printf("[%d] %s\t", i, TipoElemento.values()[i]);
+				}
+				System.out.println();
+				x = in.nextInt();	
+			}while(saccopietre.get(x)==0);
+		}
+		saccopietre.set(x,saccopietre.get(x)-1);
 		return x;
 	}
 
-	public static String inputNome() {
+	public String inputNome() {
+		System.out.println("Come si chiama il tuo Tamagolem?");
 		Scanner in = new Scanner(System.in);
 		return in.nextLine();
 	}

@@ -13,7 +13,7 @@ public class Giocatore {
 	}
 
 	public void setTamagolemTotali(int n, int p) {
-		this.tamagolemTotali = (int)((n-1)*(n-2)/(2*p));
+		this.tamagolemTotali = (int) Math.ceil((n-1)*(n-2)/(2*p));
 	}
 
 	public ArrayList<Tamagolem> getMieiTamgolem() {

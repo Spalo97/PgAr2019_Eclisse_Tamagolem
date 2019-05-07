@@ -15,7 +15,7 @@ public class Tamagolem {
 	private ArrayList <Integer> saccopietre = new ArrayList<>();
 
 	public void setMaxPietreInTama(int n) {
-		maxPietreInTama=(int)(((n+1)/3)+1);
+		maxPietreInTama=(int)(Math.ceil((n+1)/3)+1);
 	}
 	
 	public int getMaxPietreInTama() {
@@ -28,7 +28,7 @@ public class Tamagolem {
 	}
 	
 	public void setPietreTotali(int n, int g, int p) {
-		pietreTotali = (int)((2*g*p)/n)*n;
+		pietreTotali = (int) (Math.ceil(((2*g*p)/n))*n);
 	}
 
 	

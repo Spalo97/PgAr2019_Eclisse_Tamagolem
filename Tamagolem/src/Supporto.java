@@ -15,6 +15,7 @@ public class Supporto {
 				System.out.println("Non ho capito la risposta!");
 				System.out.println("[0] Si, conosciamo le regole");
 				System.out.println("[1] No, vorremmo sapere le regole");
+				risposta =lettore.nextInt();
 			} while (risposta != 0 && risposta != 1);
 		}
 		switch (risposta) {
@@ -49,23 +50,29 @@ public class Supporto {
 				System.out.println("[0] Livello Tama-BASE: Per principianti o deboli di cuore");
 				System.out.println("[1] Livello Tama-MEDIO: per giocatori abili");
 				System.out.println("[2] Livello Tama-GOLEM: per giocatori assidui e davvero esperti!");
+				risposta=lettore.nextInt();
 			} while (risposta != 0 && risposta != 1 && risposta != 2);
 		}
 		int n=0;
 		switch(risposta) {
 		case 0:
-			n=random.nextInt((3-5)+1)+3;
+			n=(int) (Math.ceil(Math.random()*((3-5)+1))+3);
 			break;
 		case 1: 
-			n=random.nextInt((6-8)+1)+6;
+			n=(int) (Math.ceil(Math.random()*((6-8)+1))+6);
 			break;
 		case 2:
-			n=random.nextInt((9-10)+1)+9;
+			n=(int) (Math.ceil(Math.random()*((9-10)+1))+9);
 			break;
 		}
 		tama.setMaxPietreInTama(n);
 		g.setTamagolemTotali(n, tama.getMaxPietreInTama());
 		tama.setPietreTotali(n, g.getTamagolemTotali(),tama.getMaxPietreInTama());
+		
+		System.out.println(n);
+		System.out.println(tama.getMaxPietreInTama());
+		System.out.println(g.getTamagolemTotali());
+		System.out.println(tama.getPietreTotali());
 	}
 	
 	

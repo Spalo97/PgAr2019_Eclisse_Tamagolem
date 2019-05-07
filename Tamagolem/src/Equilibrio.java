@@ -41,6 +41,7 @@ public class Equilibrio {
 				somma=somma+equilibrio[i][j];
 				check=true;
 			}
+			
 			if(somma>0 && check==false) {
 				equilibrio[i][j]=-(int) (Math.random()*10);
 				equilibrio[j][i]=-equilibrio[i][j];

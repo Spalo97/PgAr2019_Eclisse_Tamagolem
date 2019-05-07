@@ -20,6 +20,7 @@ public enum TipoElemento{
         this.indice = indice;
     }
 
+
     public int getIndice() {
         return indice;
     }

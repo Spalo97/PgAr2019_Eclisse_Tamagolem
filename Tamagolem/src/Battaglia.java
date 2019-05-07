@@ -3,36 +3,6 @@ import java.io.*;
 
 public class Battaglia {
 
-	public void introduzione() {
-		Scanner lettore = new Scanner(System.in);
-		System.out.println("Ciao!");
-		System.out.println("Benvenuti nel mondo dei TAMAGOLEM");
-		System.out.println("Avete mai giocato a tamagolem?");
-		System.out.println("[0] Si, conosciamo le regole");
-		System.out.println("[1] No, vorremmo sapere le regole");
-		int risposta = lettore.nextInt();
-		if (risposta != 0 && risposta != 1) {
-			do {
-				System.out.println("Non ho capito la risposta!");
-				System.out.println("[0] Si, conosciamo le regole");
-				System.out.println("[1] No, vorremmo sapere le regole");
-			} while (risposta != 0 && risposta != 1);
-		}
-		switch (risposta) {
-		case 0:
-			System.out.println("Bene, Allora iniziamo subito!");
-			break;
-		case 1:
-			System.out.println("Le regoli sono semplici!");
-			System.out.println("Nelle battaglie i Tamagolem si scaglieranno contro delle pietre del potere");
-			System.out.println("la pietra più forte colpirà il tamagolem che ha scagliato la pietra più debole");
-			System.out.println("Ma attenzione!");
-			System.out.println("I giocatori non sapranno l'equilibrio degli elementi a inzio partita!");
-			System.out.println("Vince il giocatore che sconfigge tutti i tamagolem dell'avversario!");
-			System.out.println("Ora che le regole sono chiare, Giochiamo!");
-			break;
-		}
-	}
 
 	public void scontro() {
 
@@ -59,13 +29,13 @@ public class Battaglia {
 		int counter = 0;
 
 		do {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < tama1.getMaxPietreInTama(); i++) {
 				if (tama1.getPietreIngerite(i) == tama2.getPietreIngerite(i)) {
 					counter++;
 				}
 			}
 
-			if (counter != 3) {
+			if (counter != tama1.getMaxPietreInTama()) {
 				return ok = true;
 			} else {
 				System.out.println("Giocatore 1 e 2 avete inseirto le stesse pietre degli elementi!");
@@ -90,7 +60,7 @@ public class Battaglia {
 		int i = 0;
 		do {
 			do {
-				if(i==3) {
+				if(i==tama1.getMaxPietreInTama()) {
 					i=0;
 				}
 				int danno = matrice.getDanno(tama1.getPietreIngerite(i), tama2.getPietreIngerite(i));
@@ -118,7 +88,7 @@ public class Battaglia {
 					// mi va "bene" che quest'eccezione non venga trattata e si vada avanti
 				}
 				
-				if(i<3) {
+				if(i<tama1.getMaxPietreInTama()) {
 					i=i+1;
 				}
 			

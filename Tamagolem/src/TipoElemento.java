@@ -25,8 +25,6 @@ public enum TipoElemento{
         return indice;
     }
 
-    public String name(int ) {
-    	
-    }
+
 
 }

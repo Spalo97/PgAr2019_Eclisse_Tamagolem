@@ -14,12 +14,16 @@ public class TamagolemMain {
 		
 		*/
 		Battaglia partita = new Battaglia();
+		Supporto interazioni = new Supporto();
 		Tamagolem pietre = new Tamagolem();
 		Equilibrio e = new Equilibrio();
-		pietre.preparasacco();
 		//e.print();
 		
-		partita.introduzione();
+		interazioni.introduzione();
+		interazioni.sceltaLivello();
+		
+		
+		
 
 		
 	}

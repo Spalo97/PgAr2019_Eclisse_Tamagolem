@@ -2,10 +2,19 @@ import java.util.ArrayList;
 
 public class Giocatore {
 	
-	private final int TAMAGOLEM_TOTALI = 2;
+	private int tamagolemTotali;
 	private ArrayList<Tamagolem> mieiTamagolem = new ArrayList<>(2);
-	private int tamagolemRimasti = TAMAGOLEM_TOTALI;
+	private int tamagolemRimasti = tamagolemTotali;
 	private boolean inGioco = true;
+
+	
+	public int getTamagolemTotali() {
+		return tamagolemTotali;
+	}
+
+	public void setTamagolemTotali(int n, int p) {
+		this.tamagolemTotali = (int)((n-1)*(n-2)/(2*p));
+	}
 
 	public ArrayList<Tamagolem> getMieiTamgolem() {
 		return mieiTamagolem;

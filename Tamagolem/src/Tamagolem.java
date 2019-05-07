@@ -3,22 +3,43 @@ import java.util.Scanner;
 
 public class Tamagolem {
 
-	public static final int TOT_PIETRE = 15;
-	public static final int MAX_PIETRE = 3;
+	
+	
 	private final int VITA_INIZIALE = 100;
 	
+	private int maxPietreInTama;
+	private int pietreTotali;
 	private String nome;
 	private int vita;
-	private ArrayList<Integer> pietreIngerite = new ArrayList<>();
-	private ArrayList <Integer> saccopietre = new ArrayList<>(5);
+	private ArrayList<Integer> pietreIngerite = new ArrayList<>(maxPietreInTama);
+	private ArrayList <Integer> saccopietre = new ArrayList<>();
 
+	public void setMaxPietreInTama(int n) {
+		maxPietreInTama=(int)(((n+1)/3)+1);
+	}
+	
+	public int getMaxPietreInTama() {
+		return maxPietreInTama;
+	}
+	
+	
+	public int getPietreTotali() {
+		return pietreTotali;
+	}
+	
+	public void setPietreTotali(int n, int g, int p) {
+		pietreTotali = (int)((2*g*p)/n)*n;
+	}
+
+	
 	public Tamagolem() {
 		this.vita = VITA_INIZIALE;
 	}
 	
-	public void preparasacco() {
-		for(Integer pietra: saccopietre) {
-			pietra = 3;
+	public void preparasacco(int s, int n) {
+		int pietre = s/n;
+		for(int i =0; i<n ; i++) {
+			saccopietre.add(pietre);
 		}
 	}
 
@@ -43,7 +64,7 @@ public class Tamagolem {
 	}
 
 	public void setPietraIngerita() {
-		for (int i = 0; i < MAX_PIETRE; i++) {
+		for (int i = 0; i < maxPietreInTama; i++) {
 			int scelta = inputElementi();
 			pietreIngerite.add(scelta);
 		}

@@ -1,3 +1,5 @@
+import java.lang.*;
+
 public enum TipoElemento{
     ACQUA(0),
     FUOCO(1),
@@ -12,17 +14,17 @@ public enum TipoElemento{
 
     private int indice;
 
+    
+    
     TipoElemento(int indice) {
         this.indice = indice;
     }
+
 
     public int getIndice() {
         return indice;
     }
 
-  /*
-   *  public void setIndice(int indice) {
-        this.indice = indice;
-    } inutile */
+
 
 }

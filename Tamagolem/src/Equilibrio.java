@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Equilibrio {
 
-	private int n=TamagolemMain.N_ELEMENTI;
+	private int n;
 	
 	private int somma = 0;
 
@@ -90,4 +90,8 @@ public class Equilibrio {
 		}
 	}
 	
+	public int getDanno(int a1, int a2) {
+		int danno=equilibrio[a1][a2];
+		return danno;
+	}
 }

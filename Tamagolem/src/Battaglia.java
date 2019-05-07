@@ -6,11 +6,11 @@ public class Battaglia {
 
 	public void scontro() {
 
-		System.out.println("Giocatore 1: Tocca a te! /n");
+		System.out.println("Giocatore 1: Tocca a te! \n");
 		Giocatore g1 = new Giocatore();
 		g1.evocaTamagolem();
 
-		System.out.println("Giocatore 2 Tocca a te! /n");
+		System.out.println("Giocatore 2 Tocca a te! \n");
 		Giocatore g2 = new Giocatore();
 		g2.evocaTamagolem();
 

@@ -21,7 +21,7 @@ public class TamagolemMain {
 		
 		interazioni.introduzione();
 		interazioni.sceltaLivello();
-		
+		partita.scontro();
 		
 		
 

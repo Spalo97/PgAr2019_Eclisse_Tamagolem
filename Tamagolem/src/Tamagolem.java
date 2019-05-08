@@ -43,6 +43,7 @@ public class Tamagolem {
 		for (int i = 0; i < maxPietreIngerite; i++) {
 			int scelta = inputElementi(sacco, n);
 			pietreIngerite.add(scelta);
+			
 		}
 	}
 
@@ -53,7 +54,7 @@ public class Tamagolem {
 		
 		//print degli elementi su console
 		for (int i = 0; i < TipoElemento.values().length && i< n; i++) {
-			System.out.printf("[%d] %s\t", i, TipoElemento.values()[i]);
+			System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
 		}
 		System.out.println();
 		
@@ -63,13 +64,14 @@ public class Tamagolem {
 				System.out.println("Non ci sono più pietre di questo tipo!");
 				System.out.println("Inserisci il tipo di elemento:");
 				for (int i = 0; i < TipoElemento.values().length; i++) {
-					System.out.printf("[%d] %s\t", i, TipoElemento.values()[i]);
+					System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
 				}
 				System.out.println();
 				x = in.nextInt();	
 			}while(sacco.get(x)==0);
 		}
 		e.rimuoviPietra(sacco, x);
+		System.out.println("Arrivi qui?");
 		return x;
 	}
 

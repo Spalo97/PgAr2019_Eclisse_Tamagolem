@@ -27,16 +27,24 @@ public class Battaglia {
 		sacco.set(pos, (Integer)n);
 		setSaccopietre(sacco);
 	}
+	
+	public void aggiungiPietre(ArrayList<Integer> pietreGolem) {
+		
+	}
 
 
 	public void inizializzazione(int n) {
 		this.maxPietreInTama = (int)(Math.ceil((n+1)/3)+1);
+		System.out.println("max pietre in tama: " + maxPietreInTama);
+		
 		
 		double q1 =(n-1)*(n-2);
 		this.tamaTotali = (int) Math.ceil(q1/(2*this.maxPietreInTama));
+		System.out.println("max tama: " + tamaTotali);
 		
 		this.pietreTotali = (int) (Math.ceil(((2*this.tamaTotali*this.maxPietreInTama)/n))*n);
 		Integer pietre = (Integer)this.pietreTotali/n;
+		System.out.println("max pietre: " + pietreTotali);
 		
 		for(int i =0; i<n ; i++) {
 			saccopietre.add(pietre);
@@ -82,7 +90,7 @@ public class Battaglia {
 				return ok = true;
 			} else {
 				System.out.println("Giocatore 1 e 2 avete inseirto le stesse pietre degli elementi!");
-				System.out.println("Provate ad inserirne altre!/n/n");
+				System.out.println("Provate ad inserirne altre!\n\n");
 				System.out.println("Giocatore 1: Inserisci le Pietre del Potere:");
 				g1.cambiapietre(saccopietre, maxPietreInTama, n);
 				System.out.println("Giocatore 2: Inserisci le Pietre del Potere:");
@@ -137,26 +145,26 @@ public class Battaglia {
 			
 			} while (tama1.getVita() <= 0 || tama2.getVita() <= 0);
 			
-			if (tama1.getVita() <= 0 && g1.getTamagolemRimasti() > 0) {
+			if (tama1.getVita() <= 0 && g1.getTamagolemEvocati() < tamaTotali) {
 				System.out.println("Giocatore 1 la cattiva notizia è che hai perso un Tamagolem!");
 				System.out.println("Quella buona è che puoi evocare ancora " + g1.getMieiTamgolem() + "!");
 				System.out.println("Quindi evoca un'altro Tamagolem:");
 				g1.evocaTamagolem(saccopietre, maxPietreInTama, n);
-			} else if (tama1.getVita() <= 0 && g2.getTamagolemRimasti() > 0) {
+			} else if (tama1.getVita() <= 0 && g2.getTamagolemEvocati() < tamaTotali) {
 				System.out.println("Giocatore 2 la cattiva notizia è che hai perso un Tamagolem!");
 				System.out.println("Quella buona è che puoi evocare ancora " + g2.getMieiTamgolem() + "!");
 				System.out.println("Evoca un'altro Tamagolem:");
 				g2.evocaTamagolem(saccopietre, maxPietreInTama, n);
-			} else if (g1.getTamagolemRimasti() <= 0) {
+			} else if (g1.getTamagolemEvocati() >= tamaTotali) {
 				System.out.println("Giocatore 1 mi dispiace molto ma non ha più Tamagolem!");
 				System.out.println("Quindi il Giocatore 2 si aggiudica la vittoria!! ");
 				break;
-			} else if (g2.getTamagolemRimasti() <= 0) {
+			} else if (g2.getTamagolemEvocati() <= tamaTotali) {
 				System.out.println("Giocatore 2 mi dispiace molto ma non ha più Tamagolem!");
 				System.out.println("Quindi il Giocatore 1 si aggiudica la vittoria!! ");
 				break;
 			}
 			controllopietre(g1, g2, n);
-		} while (g2.getTamagolemRimasti() > 0 && g1.getTamagolemRimasti() > 0);
+		} while (g2.getTamagolemEvocati() > 0 && g1.getTamagolemEvocati() > 0);
 	}
 }

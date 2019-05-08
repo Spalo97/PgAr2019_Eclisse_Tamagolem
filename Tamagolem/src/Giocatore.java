@@ -4,12 +4,15 @@ public class Giocatore {
 	
 	private int tamagolemTotali;
 	private ArrayList<Tamagolem> mieiTamagolem = new ArrayList<Tamagolem>();
-	private int tamagolemRimasti = tamagolemTotali;
+	private int tamagolemEvocati;
+	private int tamaInCampo;
 	//private boolean inGioco = true;
 
 	
 	public Giocatore(int tamaTotali) {
 		this.tamagolemTotali = tamaTotali;
+		tamagolemEvocati=0;
+		tamaInCampo=tamagolemEvocati-1;
 	}
 	
 	public int getTamagolemTotali() {
@@ -25,44 +28,43 @@ public class Giocatore {
 	}
 	
 	public Tamagolem tamaInCampo() {
-		Tamagolem tama = new Tamagolem();
-		tama = mieiTamagolem.get(tamagolemRimasti+1);
-		return tama;
+		return mieiTamagolem.get(tamaInCampo);
 	}
 
-	public int getTamagolemRimasti() {
-		return tamagolemRimasti;
+	public int getTamagolemEvocati() {
+		return tamagolemEvocati;
 	}
 
 	public boolean evocaTamagolem(ArrayList<Integer> saccopietre, int maxPietre, int n) {
 
-		for (int i =0; i<n;i++) {
-			System.out.println(saccopietre.get(i));
-		}
-		//if (isInGioco()) {
-			tamagolemRimasti -= 1;
 
+		if (isInGioco()) {
+			
 			Tamagolem tamagolem = new Tamagolem();
 
 			tamagolem.setNome();
 			tamagolem.setPietraIngerita(saccopietre, maxPietre, n);
-			mieiTamagolem.add(tamagolemRimasti,tamagolem);
+			System.out.println("Sono pronto ad aggiungerlo (prega coglione)");
+			mieiTamagolem.add(tamagolem);
+			System.out.println("ah che te l'ho aggiunto");
+			tamagolemEvocati += 1;
+			tamaInCampo+=1;
 			return true;
-		/*}
+		}
 		else {
 			return false;
-		}*/
+		}
 	}
 	
 	public void cambiapietre(ArrayList<Integer> saccopietre, int maxpietreinTama, int n) {
-		Tamagolem tama = new Tamagolem();
-		tama = mieiTamagolem.get(tamagolemRimasti);
-		tama.setPietraIngerita(saccopietre, maxpietreinTama, n);
+		
+		mieiTamagolem.get(tamaInCampo).setPietraIngerita(saccopietre, maxpietreinTama, n);
 	}
 	
 
-/*	public boolean isInGioco() {
-		if (tamagolemRimasti > 0) {
+	public boolean isInGioco() {
+		boolean inGioco;
+		if (tamagolemEvocati < tamagolemTotali) {
 			inGioco = true;
 		}
 		else {
@@ -70,5 +72,5 @@ public class Giocatore {
 		}
 		return inGioco;
 	}
-*/
+
 }

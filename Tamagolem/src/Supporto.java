@@ -54,13 +54,16 @@ public class Supporto {
 		int n=0;
 		switch(risposta) {
 		case 0:
-			n=(int) (Math.ceil(Math.random()*((3-5)+1))+3);
+			//n=(int) (Math.ceil(Math.random()*((3-5)+1))+3);
+			n=4;
 			return n;
 		case 1: 
-			n=(int) (Math.ceil(Math.random()*((6-8)+1))+6);
+			//n=(int) (Math.ceil(Math.random()*((6-8)+1))+6);
+			n=7;
 			return n;
 		case 2:
-			n=(int) (Math.ceil(Math.random()*((9-10)+1))+9);
+			//n=(int) (Math.ceil(Math.random()*((9-10)+1))+9);
+			n=9;
 			return n;
 		}
 		

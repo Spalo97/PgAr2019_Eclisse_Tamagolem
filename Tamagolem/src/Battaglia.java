@@ -33,7 +33,6 @@ public class Battaglia {
 			int n = saccopietre.get(indice) + 2;
 			saccopietre.set(indice, n);
 		}
-
 	}
 
 	public void inizializzazione(int n) {
@@ -105,6 +104,7 @@ public class Battaglia {
 
 	private void lotta(Giocatore g1, Giocatore g2, int n) {
 		int tamarimasti;
+		boolean b=true;
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 		Tamagolem tama1 = new Tamagolem();
 		tama1 = g1.tamaInCampo();
@@ -122,8 +122,10 @@ public class Battaglia {
 				}
 				int danno = matrice.getDanno(tama1.getPietreIngerite(i), tama2.getPietreIngerite(i));
 				if (danno > 0) {
+					
 					vita = tama1.getVita()-danno;
 					tama1.setVita(vita);
+					
 					System.out.println(tama1.getNome() + " ha la peggio e perde " + danno + " punti vita");
 					System.out.println(tama1.getNome() + " ti rimangono "  + tama1.getVita()+" punti vita");
 					System.out.printf("%s è più forte di %s", TipoElemento.values()[tama2.getPietreIngerite(i)],
@@ -144,6 +146,7 @@ public class Battaglia {
 				System.out.println("\n Se siete pronti a vedere come la battaglia andrà avanti premi Invio!");
 
 				try {
+
 					buffer.readLine();
 				} catch (IOException e) {
 					
@@ -152,34 +155,39 @@ public class Battaglia {
 				if (i < maxPietreInTama) {
 					i = i + 1;
 				}
+				
 				vita1=tama1.getVita();
 				vita2=tama2.getVita();
 				
-			}while (vita1 > 0 && vita2>  0);
+			}while (vita1 > 0 && vita2 >  0);
 
-			if (tama1.getVita() <= 0 && g1.isInGioco()==true) {
+			if (tama1.getVita() <= 0 && tamaTotali-g1.getTamagolemEvocati()>0) {
 				System.out.println("Giocatore 1 la cattiva notizia è che hai perso un Tamagolem!");
 				tamarimasti=tamaTotali-g1.getTamagolemEvocati();
 				System.out.println("Quella buona è che puoi evocare ancora " + tamarimasti + "!");
 				System.out.println("Quindi evoca un'altro Tamagolem:");
 				g1.evocaTamagolem(saccopietre, maxPietreInTama, n);
 				tama1=g1.tamaInCampo();
-			} else if (tama1.getVita() <= 0 && g2.isInGioco()==false) {
+				b=true;
+				
+			} else if (tama2.getVita() <= 0 && tamaTotali-g2.getTamagolemEvocati()>0) {
 				System.out.println("Giocatore 2 la cattiva notizia è che hai perso un Tamagolem!");
 				tamarimasti=tamaTotali-g1.getTamagolemEvocati();
 				System.out.println("Quella buona è che puoi evocare ancora " + tamarimasti + "!");
 				System.out.println("Evoca un'altro Tamagolem:");
 				g2.evocaTamagolem(saccopietre, maxPietreInTama, n);
 				tama2=g2.tamaInCampo();
-			} else if (g1.isInGioco()==false) {
+				b=true;
+			} else if (tamaTotali-g1.getTamagolemEvocati()<=0) {
 				System.out.println("Giocatore 1 mi dispiace molto ma non ha più Tamagolem!");
 				System.out.println("Quindi il Giocatore 2 si aggiudica la vittoria!! ");
+				
 				break;
-			} else if (g2.isInGioco()==false) {
+			} else if (tamaTotali-g2.getTamagolemEvocati()<=0) {
 				System.out.println("Giocatore 2 mi dispiace molto ma non ha più Tamagolem!");
 				System.out.println("Quindi il Giocatore 1 si aggiudica la vittoria!! ");
 				break;
 			}
-		} while (g2.isInGioco()==true && g1.isInGioco()==true);
+		} while (b==true);
 	}
 }

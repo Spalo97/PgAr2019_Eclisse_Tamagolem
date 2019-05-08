@@ -56,7 +56,7 @@ public class Giocatore {
 	
 
 	public boolean isInGioco() {
-		if (tamagolemEvocati <= tamagolemTotali) {
+		if (tamagolemEvocati < tamagolemTotali) {
 			inGioco = true;
 		}
 		else {

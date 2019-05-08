@@ -7,41 +7,16 @@ public class Tamagolem {
 	
 	private final int VITA_INIZIALE = 100;
 	
-	private int maxPietreInTama;
-	private int pietreTotali;
+	
 	private String nome;
 	private int vita;
-	private ArrayList<Integer> pietreIngerite = new ArrayList<>(5);
-	private ArrayList <Integer> saccopietre = new ArrayList<>(10);
+	private ArrayList<Integer> pietreIngerite = new ArrayList<Integer>();
 
-	public void setMaxPietreInTama(int n) {
-		maxPietreInTama=(int)(Math.ceil((n+1)/3)+1);
-	}
-	
-	public int getMaxPietreInTama() {
-		return maxPietreInTama;
-	}
-	
-	
-	public int getPietreTotali() {
-		return pietreTotali;
-	}
-	
-	public void setPietreTotali(int n, int g, int p) {
-		pietreTotali = (int) (Math.ceil(((2*g*p)/n))*n);
-	}
 
-	
 	public Tamagolem() {
 		this.vita = VITA_INIZIALE;
 	}
 	
-	public void preparasacco(int s, int n) {
-		int pietre = s/n;
-		for(int i =0; i<n ; i++) {
-			saccopietre.add(pietre);
-		}
-	}
 
 	public String getNome() {
 		return nome;
@@ -63,36 +38,40 @@ public class Tamagolem {
 		this.vita = vita;
 	}
 
-	public void setPietraIngerita() {
-		for (int i = 0; i < maxPietreInTama; i++) {
-			int scelta = inputElementi();
+	public void setPietraIngerita(ArrayList<Integer> sacco, int maxPietreIngerite, int n) {
+
+		for (int i = 0; i < maxPietreIngerite; i++) {
+			int scelta = inputElementi(sacco, n);
 			pietreIngerite.add(scelta);
+			
 		}
 	}
 
-	public int inputElementi() {
+	public int inputElementi(ArrayList<Integer> sacco, int n) {
 		Scanner in = new Scanner(System.in);
+		Battaglia e = new Battaglia();
 		System.out.println("Inserisci il tipo di elemento:");
 		
 		//print degli elementi su console
-		for (int i = 0; i < TipoElemento.values().length; i++) {
-			System.out.printf("[%d] %s\t", i, TipoElemento.values()[i]);
+		for (int i = 0; i < TipoElemento.values().length && i< n; i++) {
+			System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
 		}
 		System.out.println();
 		
 		int x = in.nextInt();
-		if(saccopietre.get(x)==0) {
+		if(sacco.get(x)==0) {
 			do {
 				System.out.println("Non ci sono più pietre di questo tipo!");
 				System.out.println("Inserisci il tipo di elemento:");
 				for (int i = 0; i < TipoElemento.values().length; i++) {
-					System.out.printf("[%d] %s\t", i, TipoElemento.values()[i]);
+					System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
 				}
 				System.out.println();
 				x = in.nextInt();	
-			}while(saccopietre.get(x)==0);
+			}while(sacco.get(x)==0);
 		}
-		saccopietre.set(x,saccopietre.get(x)-1);
+		e.rimuoviPietra(sacco, x);
+		System.out.println("Arrivi qui?");
 		return x;
 	}
 

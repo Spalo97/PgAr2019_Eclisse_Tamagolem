@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Equilibrio {
 
-	private int n=5;
+	private int n = 5; //sostituire con TamagolemMain.n
 	
 	private int somma = 0;
 
@@ -17,8 +17,10 @@ public class Equilibrio {
 				for(int j=0;j<n;j++) {
 						if(i==j) {
 							equilibrio[i][j]=0;					//diagonale di 0
-						}else if(j>i)
+						}else if(j>i) {
 							if(j!=(n-1)) {						//elementi sopra la diagonale
+								if(equilibrio[i][j]!=0)
+									equilibrio[i][j]=0;
 								elemento(i,j);
 							}else{
 								if(somma!=0) {					//ultimo elemento della riga
@@ -27,6 +29,7 @@ public class Equilibrio {
 								}else {
 									i=resetLinea(i);
 								}
+							}
 						}
 				}
 				if(i>=0) {
@@ -34,22 +37,23 @@ public class Equilibrio {
 						i=resetLinea(i);
 					}
 				}
-				else if(i<(n-1)){
+				if(i<(n-1)){
 					somma=setSomma(equilibrio[i+1]);
 				}
 			}
 	}
 	
 	private int resetLinea(int i) {
-		if(i==0) 
+		if(i==0) { 
 			i--;
-		else
+		}else {
 			i=i-2;
-		
-		if(i<=0)
+		}
+		if(i<=0) {
 			somma=0;
-		else
-			somma=setSomma(equilibrio[i]);			
+		}else {
+			somma=setSomma(equilibrio[i]);
+		}
 		return i;
 	}
 	

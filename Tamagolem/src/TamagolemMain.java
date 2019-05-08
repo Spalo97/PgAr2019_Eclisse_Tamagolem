@@ -1,7 +1,7 @@
 
 public class TamagolemMain {
 	
-	private static int n;
+	public static int n;
 
 	public static void main(String[] args) {
 		
@@ -22,8 +22,8 @@ public class TamagolemMain {
 		e.print();
 		
 //		interazioni.introduzione();
-		n = interazioni.sceltaLivello();
-		partita.scontro(n);
+//		n = interazioni.sceltaLivello();
+//		partita.scontro(n);
 		
 		
 

@@ -26,16 +26,14 @@ public class Battaglia {
 	}
 
 	public void sistemaSacco(Tamagolem tama1, Tamagolem tama2) {
-		System.out.println("ciao");
+		
 		for (int i = 0; i < maxPietreInTama; i++) {
 			Integer pietra = tama1.getPietreIngerite(i);
 			int indice = pietra.intValue();
 			int n = saccopietre.get(indice) + 2;
 			saccopietre.set(indice, n);
 		}
-		for (int i = 0; i < maxPietreInTama; i++) {
-			System.out.println(saccopietre.get(i));
-		}
+
 	}
 
 	public void inizializzazione(int n) {

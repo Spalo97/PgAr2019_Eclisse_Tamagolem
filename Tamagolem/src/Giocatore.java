@@ -3,18 +3,21 @@ import java.util.ArrayList;
 public class Giocatore {
 	
 	private int tamagolemTotali;
-	private ArrayList<Tamagolem> mieiTamagolem = new ArrayList<>(9);
+	private ArrayList<Tamagolem> mieiTamagolem = new ArrayList<Tamagolem>();
 	private int tamagolemRimasti = tamagolemTotali;
-	private boolean inGioco = true;
+	//private boolean inGioco = true;
 
+	
+	public Giocatore(int tamaTotali) {
+		this.tamagolemTotali = tamaTotali;
+	}
 	
 	public int getTamagolemTotali() {
 		return tamagolemTotali;
 	}
 
-	public void setTamagolemTotali(int n, int p) {
-		double q1 =(n-1)*(n-2);
-		this.tamagolemTotali = (int) Math.ceil(q1/(2*p));
+	public void setTamagolemTotali(int tamagolemTotali) {
+		this.tamagolemTotali = tamagolemTotali;
 	}
 
 	public ArrayList<Tamagolem> getMieiTamgolem() {
@@ -23,7 +26,7 @@ public class Giocatore {
 	
 	public Tamagolem tamaInCampo() {
 		Tamagolem tama = new Tamagolem();
-		tama = mieiTamagolem.get(tamagolemRimasti);
+		tama = mieiTamagolem.get(tamagolemRimasti+1);
 		return tama;
 	}
 
@@ -31,28 +34,34 @@ public class Giocatore {
 		return tamagolemRimasti;
 	}
 
-	public boolean evocaTamagolem() {
-		if (isInGioco()) {
+	public boolean evocaTamagolem(ArrayList<Integer> saccopietre, int maxPietre, int n) {
+
+		for (int i =0; i<n;i++) {
+			System.out.println(saccopietre.get(i));
+		}
+		//if (isInGioco()) {
 			tamagolemRimasti -= 1;
+
 			Tamagolem tamagolem = new Tamagolem();
+
 			tamagolem.setNome();
-			tamagolem.setPietraIngerita();
+			tamagolem.setPietraIngerita(saccopietre, maxPietre, n);
 			mieiTamagolem.add(tamagolemRimasti,tamagolem);
 			return true;
-		}
+		/*}
 		else {
 			return false;
-		}
+		}*/
 	}
 	
-	public void cambiapietre() {
+	public void cambiapietre(ArrayList<Integer> saccopietre, int maxpietreinTama, int n) {
 		Tamagolem tama = new Tamagolem();
 		tama = mieiTamagolem.get(tamagolemRimasti);
-		tama.setPietraIngerita();
+		tama.setPietraIngerita(saccopietre, maxpietreinTama, n);
 	}
 	
 
-	public boolean isInGioco() {
+/*	public boolean isInGioco() {
 		if (tamagolemRimasti > 0) {
 			inGioco = true;
 		}
@@ -61,5 +70,5 @@ public class Giocatore {
 		}
 		return inGioco;
 	}
-
+*/
 }

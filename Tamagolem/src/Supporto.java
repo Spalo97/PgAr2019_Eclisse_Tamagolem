@@ -34,10 +34,8 @@ public class Supporto {
 		}
 	}
 	
-	public void sceltaLivello() {
-		Random random = new Random();
+	public int sceltaLivello() {
 		Scanner lettore = new Scanner(System.in);
-		Giocatore g = new Giocatore();
 		Tamagolem tama = new Tamagolem();
 		System.out.println("A che livello di difficoltà vuoi giocare?");
 		System.out.println("[0] Livello Tama-BASE: Per principianti o deboli di cuore");
@@ -57,22 +55,24 @@ public class Supporto {
 		switch(risposta) {
 		case 0:
 			n=(int) (Math.ceil(Math.random()*((3-5)+1))+3);
-			break;
+			return n;
 		case 1: 
 			n=(int) (Math.ceil(Math.random()*((6-8)+1))+6);
-			break;
+			return n;
 		case 2:
 			n=(int) (Math.ceil(Math.random()*((9-10)+1))+9);
-			break;
+			return n;
 		}
-		tama.setMaxPietreInTama(n);
-		g.setTamagolemTotali(n, tama.getMaxPietreInTama());
-		tama.setPietreTotali(n, g.getTamagolemTotali(),tama.getMaxPietreInTama());
+		
+		//tama.setMaxPietreInTama(n);
+		//g.setTamagolemTotali(n, tama.getMaxPietreInTama());
+		//tama.setPietreTotali(n, g.getTamagolemTotali(),tama.getMaxPietreInTama());
 		
 		System.out.println(n);
-		System.out.println(tama.getMaxPietreInTama());
-		System.out.println(g.getTamagolemTotali());
-		System.out.println(tama.getPietreTotali());
+		//System.out.println(tama.getMaxPietreInTama());
+		//System.out.println(g.getTamagolemTotali());
+		//System.out.println(tama.getPietreTotali());
+		return n;
 	}
 	
 	

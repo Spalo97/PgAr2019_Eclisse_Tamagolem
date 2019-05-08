@@ -1,7 +1,7 @@
 
 public class TamagolemMain {
 	
-	private int n;
+	private static int n;
 
 	public static void main(String[] args) {
 		
@@ -15,15 +15,15 @@ public class TamagolemMain {
 		if somma totale -, allora prossimo positivo
 		
 		*/
-//		Battaglia partita = new Battaglia();
-//		Supporto interazioni = new Supporto();
-//		Tamagolem pietre = new Tamagolem();
+		Battaglia partita = new Battaglia();
+		Supporto interazioni = new Supporto();
+
 		Equilibrio e = new Equilibrio();
 		e.print();
 		
 //		interazioni.introduzione();
-//		interazioni.sceltaLivello();
-//		partita.scontro();
+		n = interazioni.sceltaLivello();
+		partita.scontro(n);
 		
 		
 

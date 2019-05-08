@@ -2,17 +2,19 @@ import java.util.*;
 
 public class Equilibrio {
 
-	private int n = 5; //sostituire con TamagolemMain.n
+
+	private int n;
 	
 	private int somma = 0;
 
-	private int[][] equilibrio = new int[n][n];
+	private int[][] equilibrio;
 	
 	boolean check = false;
 	
 	
-	public Equilibrio() {
-		
+	public Equilibrio(int n) {
+			equilibrio = new int[n][n];
+			this.n=n;
 			for(int i=0;i<n;i++) {
 				for(int j=0;j<n;j++) {
 						if(i==j) {
@@ -41,6 +43,7 @@ public class Equilibrio {
 					somma=setSomma(equilibrio[i+1]);
 				}
 			}
+			
 	}
 	
 	private int resetLinea(int i) {

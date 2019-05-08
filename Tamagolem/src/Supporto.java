@@ -2,6 +2,13 @@ import java.util.*;
 
 
 public class Supporto {
+	private int n; 
+	
+	
+	public int getN() {
+		return n;
+	}
+
 	public void introduzione() {
 		Scanner lettore = new Scanner(System.in);
 		System.out.println("Ciao!");
@@ -56,14 +63,17 @@ public class Supporto {
 		case 0:
 			//n=(int) (Math.ceil(Math.random()*((3-5)+1))+3);
 			n=4;
+			this.n=n;
 			return n;
 		case 1: 
 			//n=(int) (Math.ceil(Math.random()*((6-8)+1))+6);
 			n=7;
+			this.n=n;
 			return n;
 		case 2:
 			//n=(int) (Math.ceil(Math.random()*((9-10)+1))+9);
 			n=9;
+			this.n=n;
 			return n;
 		}
 		

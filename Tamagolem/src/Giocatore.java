@@ -6,7 +6,7 @@ public class Giocatore {
 	private ArrayList<Tamagolem> mieiTamagolem = new ArrayList<Tamagolem>();
 	private int tamagolemEvocati;
 	private int tamaInCampo;
-	//private boolean inGioco = true;
+	private boolean inGioco = true;
 
 	
 	public Giocatore(int tamaTotali) {
@@ -36,17 +36,11 @@ public class Giocatore {
 	}
 
 	public boolean evocaTamagolem(ArrayList<Integer> saccopietre, int maxPietre, int n) {
-
-
 		if (isInGioco()) {
-			
 			Tamagolem tamagolem = new Tamagolem();
-
 			tamagolem.setNome();
 			tamagolem.setPietraIngerita(saccopietre, maxPietre, n);
-			System.out.println("Sono pronto ad aggiungerlo (prega coglione)");
 			mieiTamagolem.add(tamagolem);
-			System.out.println("ah che te l'ho aggiunto");
 			tamagolemEvocati += 1;
 			tamaInCampo+=1;
 			return true;
@@ -57,14 +51,12 @@ public class Giocatore {
 	}
 	
 	public void cambiapietre(ArrayList<Integer> saccopietre, int maxpietreinTama, int n) {
-		
-		mieiTamagolem.get(tamaInCampo).setPietraIngerita(saccopietre, maxpietreinTama, n);
+		mieiTamagolem.get(tamaInCampo).cambiaPietre(saccopietre, maxpietreinTama, n);
 	}
 	
 
 	public boolean isInGioco() {
-		boolean inGioco;
-		if (tamagolemEvocati < tamagolemTotali) {
+		if (tamagolemEvocati <= tamagolemTotali) {
 			inGioco = true;
 		}
 		else {

@@ -18,12 +18,11 @@ public class TamagolemMain {
 		Battaglia partita = new Battaglia();
 		Supporto interazioni = new Supporto();
 
-		Equilibrio e = new Equilibrio();
-		e.print();
 		
-//		interazioni.introduzione();
-//		n = interazioni.sceltaLivello();
-//		partita.scontro(n);
+		
+		//interazioni.introduzione();
+		n = interazioni.sceltaLivello();
+		partita.scontro(n);
 		
 		
 

@@ -5,19 +5,19 @@ public class Tamagolem {
 
 	
 	
-	private final int VITA_INIZIALE = 100;
+	private final int VITA_INIZIALE = 20;
 	
 	
 	private String nome;
 	private int vita;
 	private ArrayList<Integer> pietreIngerite = new ArrayList<Integer>();
 
-
+	
+	
 	public Tamagolem() {
 		this.vita = VITA_INIZIALE;
 	}
 	
-
 	public String getNome() {
 		return nome;
 	}
@@ -38,12 +38,16 @@ public class Tamagolem {
 		this.vita = vita;
 	}
 
-	public void setPietraIngerita(ArrayList<Integer> sacco, int maxPietreIngerite, int n) {
-
+	public void cambiaPietre(ArrayList<Integer> sacco, int maxPietreIngerite, int n) {
 		for (int i = 0; i < maxPietreIngerite; i++) {
 			int scelta = inputElementi(sacco, n);
-			pietreIngerite.add(scelta);
-			
+			pietreIngerite.set(i, scelta);	
+		}
+	}
+	public void setPietraIngerita(ArrayList<Integer> sacco, int maxPietreIngerite, int n) {
+		for (int i = 0; i < maxPietreIngerite; i++) {
+			int scelta = inputElementi(sacco, n);
+			pietreIngerite.add(scelta);	
 		}
 	}
 
@@ -51,19 +55,33 @@ public class Tamagolem {
 		Scanner in = new Scanner(System.in);
 		Battaglia e = new Battaglia();
 		System.out.println("Inserisci il tipo di elemento:");
+		int x;
 		
 		//print degli elementi su console
-		for (int i = 0; i < TipoElemento.values().length && i< n; i++) {
+		
+		for (int i = 0; i < TipoElemento.values().length && i<n; i++) {
 			System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
 		}
 		System.out.println();
 		
-		int x = in.nextInt();
+		x = in.nextInt();
+		
+		while(x<0 || x>n) {
+			System.out.println("elemento non corretto");
+			for (int i = 0; i < TipoElemento.values().length && i< n; i++) {
+				System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
+			}
+			System.out.println();
+			
+			x = in.nextInt();
+			
+		}
+		
 		if(sacco.get(x)==0) {
 			do {
 				System.out.println("Non ci sono più pietre di questo tipo!");
 				System.out.println("Inserisci il tipo di elemento:");
-				for (int i = 0; i < TipoElemento.values().length; i++) {
+				for (int i = 0; i < TipoElemento.values().length && i<n; i++) {
 					System.out.printf("[%d] %s", i, TipoElemento.values()[i]+"\n");
 				}
 				System.out.println();
@@ -71,7 +89,7 @@ public class Tamagolem {
 			}while(sacco.get(x)==0);
 		}
 		e.rimuoviPietra(sacco, x);
-		System.out.println("Arrivi qui?");
+
 		return x;
 	}
 
@@ -81,3 +99,5 @@ public class Tamagolem {
 		return in.nextLine();
 	}
 }
+
+

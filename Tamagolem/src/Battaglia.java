@@ -172,7 +172,7 @@ public class Battaglia {
 				
 			} else if (tama2.getVita() <= 0 && tamaTotali-g2.getTamagolemEvocati()>0) {
 				System.out.println("Giocatore 2 la cattiva notizia è che hai perso un Tamagolem!");
-				tamarimasti=tamaTotali-g1.getTamagolemEvocati();
+				tamarimasti=tamaTotali-g2.getTamagolemEvocati();
 				System.out.println("Quella buona è che puoi evocare ancora " + tamarimasti + "!");
 				System.out.println("Evoca un'altro Tamagolem:");
 				g2.evocaTamagolem(saccopietre, maxPietreInTama, n);

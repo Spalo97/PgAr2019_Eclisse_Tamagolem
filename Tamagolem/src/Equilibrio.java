@@ -61,22 +61,18 @@ public class Equilibrio {
 		while(equilibrio[i][j]==0) {
 			if(somma==0 && check==false) {
 				equilibrio[i][j]=(int) (Math.random()*10);
-				equilibrio[j][i]=-equilibrio[i][j];
-				somma=somma+equilibrio[i][j];
 				check=true;
 			}
 			if(somma<0 && check==false) {
-				equilibrio[i][j]=(int) (Math.random()*10);
-				equilibrio[j][i]=-equilibrio[i][j];
-				somma=somma+equilibrio[i][j];
+				equilibrio[i][j]=(int) (Math.random()*10);				
 				check=true;
 			}
 			if(somma>0 && check==false) {
 				equilibrio[i][j]=-(int) (Math.random()*10);
-				equilibrio[j][i]=-equilibrio[i][j];
-				somma=somma+equilibrio[i][j];
 				check=true;
 			}
+			equilibrio[j][i]=-equilibrio[i][j];
+			somma=somma+equilibrio[i][j];
 			check=false;
 		}
 	}
@@ -97,17 +93,17 @@ public class Equilibrio {
 				val=equilibrio[i][j];
 		}
 		
-		if(val>10)
+		if(val>10) {
 			return true;
-		
+		}
 		for(int j=0;j<n;j++) {
 			if(val>equilibrio[i][j]);
 				val=equilibrio[i][j];
 		}
 		
-		if(val<-10)
+		if(val<-10) {
 			return true;
-		
+		}
 		return false;
 	}
 	
